@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'first_app/styles.css' %}">
+</head>
+<body>
+    <div class = "left">
+        <form action='/process' class="left1" method = 'post'>
+            {% csrf_token %}
+            <p>
+                <label> Add a new word: </label>
+                <input type="text" id="Name" name="user_input" required>
+            </p>
+            <p>
+                <p>Pick Color (NOT OPTIONAL):</p>
+                <input type="radio" name="user_color" value="Blue"class="color"><label for="blue"> Blue</label>
+                <input type="radio" name="user_color" value="Red" class="color"><label for="red"> Red</label>
+                <input type="radio" name="user_color" value="Green" class="color"><label for="green"> Green</label>
+            <p>
+                <p>Check this box for big font:</p>
+                <input class = "big_font" type = "checkbox" name = "big_font">
+            </p> 
+            <input type='submit' name = "submit" value='Add to Session'>
+        </form>
+    </div>
+
+    <div class = "right">
+        <form action='clear' method = 'post'>
+            {% csrf_token %}
+            <input type='submit' value='Clear Session'>
+        </form>
+
+        {% for x in request.session.listofword %}
+        <p class = "input" style = "color: {{x.0}}; font-size: {{x.1}}px;"> {{x.2}} </p> <p style = "color: black;">-added at {{ x.3 }} </p>
+        {%endfor%}
+    </div>
+</body>
+</html>
+
+<!-- USE THIS,  -->
+<!-- <font color="{{request.session.color}}" size="{{request.session.big_font}}"> </font>
+        {{x}}</br> -->
+
+<!-- <p style='color:{{request.session.color}}; font-size:{{request.session.big_font}}px;'> {{request.session.word}} </p> -->

@@ -1,0 +1,18 @@
+.left,
+.right{
+    display: inline-block;
+    border: 2px solid black;
+    height: 400px;
+    width: 300px;
+    vertical-align: top;
+    padding: 20px;
+    background-color: #b4cef7
+}
+.left1 p{
+    font-weight: bold;
+}
+
+.input{
+    display: inline-block
+}
+
